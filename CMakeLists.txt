@@ -25,3 +25,7 @@ target_link_libraries(boxy_actuation PUBLIC ${PROJECT_NAME} stdc++fs)
 add_executable(a1_actuation examples/a1_actuation.cpp)
 target_include_directories(a1_actuation PUBLIC examples/helpers)
 target_link_libraries(a1_actuation PUBLIC ${PROJECT_NAME} stdc++fs)
+
+add_executable(hyqreal_IFR examples/hyqreal_IFR.cpp)
+target_include_directories(hyqreal_IFR PUBLIC examples/helpers)
+target_link_libraries(hyqreal_IFR PUBLIC ${PROJECT_NAME} stdc++fs)
