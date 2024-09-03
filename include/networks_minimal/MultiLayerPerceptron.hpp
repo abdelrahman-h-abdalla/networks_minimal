@@ -44,6 +44,10 @@ private:
     // Network Parameters
     std::string networkParametersPath_;
     Eigen::MatrixXd networkParameters_;
+    // Scaling offsets for (sorted inputs then outputs)
+    std::string dataScalersPath_;
+    Eigen::MatrixXd dataOffsets_;
+    Eigen::MatrixXd dataMultipliers_;
 
     std::vector <Eigen::MatrixXd> networkWeights_;
     std::vector <Eigen::MatrixXd> networkBiases_;
