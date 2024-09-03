@@ -101,10 +101,12 @@ void MultiLayerPerceptron::resetNetworkParameters() {
     unsigned int networkParametersOffset = 0;
 
     for (int layer = 0; layer < networkLayers_.size() - 1; ++layer) {
-        networkWeights_[layer] = Eigen::Map<Eigen::MatrixXd>(networkParameters_.row(0).segment(
-                                                                     networkParametersOffset, networkLayers_[layer] * networkLayers_[layer + 1]).data(),
-                                                             networkWeights_[layer].rows(),
-                                                             networkWeights_[layer].cols());
+        Eigen::MatrixXd tmp = Eigen::Map<Eigen::MatrixXd>(networkParameters_.row(0).segment(
+                networkParametersOffset, networkLayers_[layer] * networkLayers_[layer + 1]).data(),
+                networkWeights_[layer].cols(),
+                networkWeights_[layer].rows());
+        // Since the parameters are stored in an order of all inputs for each node we switch to match Eigen
+        networkWeights_[layer] = tmp.transpose(); // Size of weights x inputs
         networkParametersOffset += networkLayers_[layer] * networkLayers_[layer + 1];
 
         networkBiases_[layer] = Eigen::Map<Eigen::MatrixXd>(
